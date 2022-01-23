@@ -3,10 +3,12 @@ import styled from "styled-components";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { coins } from "../static/coins";
 import Coin from "./Coin";
+import BalancedChart from "./BalancedChart";
 const Portfolio = () => {
   return (
     <Wrapper>
       <Content>
+          <BalancedChart/>
         <PortfolioTable>
           <TableItem>
             <Title>Your Assets</Title>
