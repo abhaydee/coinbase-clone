@@ -1,41 +1,43 @@
 import React from "react";
 import styled from "styled-components";
-import {BsThreeDotsVertical} from "react-icons/bs";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import { coins } from "../static/coins";
 import Coin from "./Coin";
 const Portfolio = () => {
   return (
     <Wrapper>
-      <PortfolioTable>
-        <TableItem>
-          <Title>Your Assets</Title>
-        </TableItem>
-        <Divider/>
-        <Table>
+      <Content>
+        <PortfolioTable>
+          <TableItem>
+            <Title>Your Assets</Title>
+          </TableItem>
+          <Divider />
+          <Table>
             <TableItem>
-                <TableRow>
-                    <div style={{flex:"3"}}>Name </div>
-                    <div style={{flex:"2"}}>Balance</div>
-                    <div style={{flex:"1"}}>Price</div>
-                    <div style={{flex:"1"}}>Allocation</div>
-                    <div style={{flex:"0"}}>
-                        <BsThreeDotsVertical/>
-                    </div>
-                </TableRow>
+              <TableRow>
+                <div style={{ flex: "3" }}>Name </div>
+                <div style={{ flex: "2" }}>Balance</div>
+                <div style={{ flex: "1" }}>Price</div>
+                <div style={{ flex: "1" }}>Allocation</div>
+                <div style={{ flex: "0" }}>
+                  <BsThreeDotsVertical />
+                </div>
+              </TableRow>
             </TableItem>
-            <Divider/>
+            <Divider />
             <div>
-                {coins.map((coin,coinIndex)=>{
-                    return (
-                        <div key={coinIndex}>
-                            <Coin coin={coin} />
-                            <Divider/>
-                        </div>
-                    )
-                })}
+              {coins.map((coin, coinIndex) => {
+                return (
+                  <div key={coinIndex}>
+                    <Coin coin={coin} />
+                    <Divider />
+                  </div>
+                );
+              })}
             </div>
-        </Table>
-      </PortfolioTable>
+          </Table>
+        </PortfolioTable>
+      </Content>
     </Wrapper>
   );
 };
@@ -72,9 +74,9 @@ const TableRow = styled.tr`
   }
 `;
 
-const TableItem=styled.div`
-  padding:1rem 2rem;    
-`
+const TableItem = styled.div`
+  padding: 1rem 2rem;
+`;
 
 const Divider = styled.div`
   border-bottom: 1px solid #282b2f;

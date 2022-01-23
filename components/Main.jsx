@@ -14,7 +14,7 @@ export default Main;
 const Wrapper=styled.div`
     display:flex;
     max-height:cal(100vh-64px);
-    overflow:scroll;
+    overflow:hidden;
     & div{
         border-radius : 0.4rem;
     }
