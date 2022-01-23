@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Coin = () => {
+const Coin = ({coin}) => {
   return <div></div>;
 };
 

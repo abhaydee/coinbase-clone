@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {BsThreeDotsVertical} from "react-icons/bs";
 import { coins } from "../static/coins";
+import Coin from "./Coin";
 const Portfolio = () => {
   return (
     <Wrapper>
@@ -28,6 +29,7 @@ const Portfolio = () => {
                     return (
                         <div key={coinIndex}>
                             <Coin coin={coin} />
+                            <Divider/>
                         </div>
                     )
                 })}
