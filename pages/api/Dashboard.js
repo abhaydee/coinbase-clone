@@ -22,7 +22,7 @@ function Dashboard({ address }) {
         const coins=await fetch("https://hfam2mls.api.sanity.io/v1/data/query/production?query=*%5B_type%3D%3D%22coins%22%5D%7B%0A%20%20name%2C%0A%20%20usdPrice%2C%0A%20%20contractAddress%2C%0A%20%20logo%2C%0A%20%20symbol%0A%7D")
         const sanityTokens = (await coins.json()).result;
         setSanityTokens(sanityTokens)
-        setThirdWebTokens(sanityTokens.map((token) => console.log(sdk.getTokenModule(token.contractAddress))))
+        setThirdWebTokens(sanityTokens.map((token) => (sdk.getTokenModule(token.contractAddress))))
     }
     return getSanityAndThirdWebTokens()
   },[])

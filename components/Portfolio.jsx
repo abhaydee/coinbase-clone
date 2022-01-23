@@ -6,7 +6,10 @@ import Coin from "./Coin";
 import BalancedChart from "./BalancedChart";
 
 
-const Portfolio = ({thirdWebTokens,sanityTokens}) => {
+const Portfolio = ({thirdWebTokens,sanityTokens,walletAddress}) => {
+  console.log("the tokens",thirdWebTokens)
+  thirdWebTokens[0].balanceOf(walletAddress)
+  .then(balance=>console.log(balance))
   return (
     <Wrapper>
       <Content>
