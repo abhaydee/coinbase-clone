@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import Portfolio from './Portfolio';
+import Promos from './Promos';
 
 const Main = () => {
   return <Wrapper>
       <Portfolio/>
+      <Promos/>
   </Wrapper>;
 };
 
