@@ -1,16 +1,41 @@
 import React from "react";
 import styled from "styled-components";
-
+import {BsThreeDotsVertical} from "react-icons/bs";
+import { coins } from "../static/coins";
 const Portfolio = () => {
   return (
-        <PortfolioTable>
+    <Wrapper>
+      <PortfolioTable>
+        <TableItem>
+          <Title>Your Assets</Title>
+        </TableItem>
+        <Divider/>
+        <Table>
             <TableItem>
-                <Title>
-                    Your Assets
-                </Title>
+                <TableRow>
+                    <div style={{flex:"3"}}>Name </div>
+                    <div style={{flex:"2"}}>Balance</div>
+                    <div style={{flex:"1"}}>Price</div>
+                    <div style={{flex:"1"}}>Allocation</div>
+                    <div style={{flex:"0"}}>
+                        <BsThreeDotsVertical/>
+                    </div>
+                </TableRow>
             </TableItem>
-        </PortfolioTable>
-    );
+            <Divider/>
+            <div>
+                {coins.map((coin,coinIndex)=>{
+                    return (
+                        <div key={coinIndex}>
+                            <Coin coin={coin} />
+                        </div>
+                    )
+                })}
+            </div>
+        </Table>
+      </PortfolioTable>
+    </Wrapper>
+  );
 };
 
 export default Portfolio;
@@ -45,11 +70,15 @@ const TableRow = styled.tr`
   }
 `;
 
+const TableItem=styled.div`
+  padding:1rem 2rem;    
+`
+
 const Divider = styled.div`
   border-bottom: 1px solid #282b2f;
 `;
 
-const Title=styled.div`
-  font-size:1.5rem;
-  font-weight:600;
-`
+const Title = styled.div`
+  font-size: 1.5rem;
+  font-weight: 600;
+`;
