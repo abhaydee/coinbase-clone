@@ -27,8 +27,6 @@ function Dashboard({ address }) {
     return getSanityAndThirdWebTokens()
   },[])
 
-  console.log("the sanity tokens",sanityTokens)
-  console.log("the thirdWebTokens",thirdWebTokens)
   return (
     <Wrapper>
       <Sidebar/>

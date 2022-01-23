@@ -7,9 +7,27 @@ import BalancedChart from "./BalancedChart";
 
 
 const Portfolio = ({thirdWebTokens,sanityTokens,walletAddress}) => {
-  console.log("the tokens",thirdWebTokens)
-  thirdWebTokens[0].balanceOf(walletAddress)
-  .then(balance=>console.log(balance))
+  const [walletBalance,setWalletBalance]=useState(0)
+  const tokenToUsd={
+
+  }
+  for(const token of sanityTokens){
+    tokenToUsd[token.contractAddress]=Number(token.usdPrice)
+  }
+
+  useEffect(()=>{
+    const calculateTotalBalance = async ()=>{
+      const totalBalance=await Promise.all( 
+        thirdWebTokens.map(async token=>{
+          const balance =await token.balanceOf(walletAddress)
+          return Number((balance.displayValue) * tokenToUsd[token.address])
+        })
+      )
+      setWalletBalance(totalBalance.reduce((acc,curr)=>acc+curr,0))
+    }
+     calculateTotalBalance()
+  },[thirdWebTokens,sanityTokens])
+
   return (
     <Wrapper>
       <Content>
@@ -20,9 +38,7 @@ const Portfolio = ({thirdWebTokens,sanityTokens,walletAddress}) => {
                           Portfolio Balance
                       </BalanceTitle>
                       <BalanceValue>
-                          {`$`}
-                          {/* {walletBalance.toLocaleString()} */}
-                          46000
+                          {walletBalance.toLocaleString()}
                       </BalanceValue>
                   </Balance>
               </div>
