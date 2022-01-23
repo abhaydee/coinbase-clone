@@ -1,9 +1,11 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import CoinbaseLogo from "../public/assets/cb-logo.png"
 import {navItems} from "../static/navItems"
 const Sidebar = () => {
+  const [activeIcon,setActiveIcon] = useState(navItems[0].title);
+
   return <Wrapper>
        <LogoContainer>
            <Logo>
@@ -13,8 +15,8 @@ const Sidebar = () => {
        <NavItemsContainer>
            {navItems.map((item,itemIndex)=>{
                return (
-                   <NavItem key={itemIndex}>
-                        <NavIcon style={{color:item.title}}>
+                   <NavItem key={itemIndex} onClick={()=>setActiveIcon(item.title)}>
+                        <NavIcon style={{color:item.title===activeIcon && "#3773f5 "}}>
                             {item.icon}
                         </NavIcon>
                         <NavTitle>
@@ -77,5 +79,5 @@ const NavIcon = styled.div`
 `;
 
 const NavTitle =styled.div`
- 
+
 `;
