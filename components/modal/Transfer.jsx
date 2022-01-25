@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import {FaWallet} from "react-icons/fa"
 const Transfer = () => {
   const [amount, setAmount] = useState();
   return (
@@ -19,6 +20,16 @@ const Transfer = () => {
           Amount is a required field{" "}
         </Warning>
       </Amount>
+      <TransferForm>
+          <Row>
+            <FieldName>
+                To
+            </FieldName>
+            <Icon>
+                <FaWallet/>
+            </Icon>
+         </Row>
+      </TransferForm>
     </Wrapper>
   );
 };
@@ -75,10 +86,14 @@ const Warning = styled.div`
   color: "#8a919e";
 `;
 
-const Divider = style.div`
+const Divider = styled.div`
     border-bottom:1px solid #282b2f;
 `;
 
+const TransferForm =styled.div`
+ border: 1px solid "#282b2f";
+ border-radius :0.4rem;
+`
 const Row = styled.div`
   display: flex;
   align-items: center;
@@ -138,3 +153,18 @@ const CoinName = styled.div`
   text-wrap: wrap;
   margin-right: 0.5rem;
 `;
+
+const Continue =styled.button`
+  color:white;
+  width:100%;
+  background-color:"#3773f5";
+  padding:1rem;
+  text-align:center;
+  border-radius:0.4rem;
+  font-size:1.2rem;
+  &:hover{
+      cursor:pointer;
+      background-color:"#4a80f6";
+      
+  }
+`
