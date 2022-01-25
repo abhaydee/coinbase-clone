@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {FaWallet} from "react-icons/fa"
 const Transfer = () => {
   const [amount, setAmount] = useState();
+  const [receipient,setReceipient] =useState("");
   return (
     <Wrapper>
       <Amount>
@@ -28,8 +29,30 @@ const Transfer = () => {
             <Icon>
                 <FaWallet/>
             </Icon>
+            <Receipient placeholder="address" value={receipient} onChange={(event)=>setReceipient(event.target.value)}>
+
+            </Receipient>
+         </Row>
+         <Divider/>
+         <Row>
+             <FieldName>
+                 Pay with
+             </FieldName>
+             <CoinSelectList>
+                 <Icon>
+                     {/* <img src={imageUrl}  alt=""/> */}
+                 </Icon>
+                 <CoinName>
+                     Ethereum
+                 </CoinName>
+             </CoinSelectList>
          </Row>
       </TransferForm>
+      <Row>
+          <Continue>
+              Continue
+          </Continue>
+      </Row>
     </Wrapper>
   );
 };
@@ -91,8 +114,9 @@ const Divider = styled.div`
 `;
 
 const TransferForm =styled.div`
- border: 1px solid "#282b2f";
+ border: 1px solid #282b2f;
  border-radius :0.4rem;
+ margin:1rem;
 `
 const Row = styled.div`
   display: flex;
@@ -154,17 +178,18 @@ const CoinName = styled.div`
   margin-right: 0.5rem;
 `;
 
-const Continue =styled.button`
+const Continue =styled.div`
   color:white;
   width:100%;
-  background-color:"#3773f5";
+  background:#3773f5;
   padding:1rem;
+  margin:1rem;
   text-align:center;
   border-radius:0.4rem;
   font-size:1.2rem;
   &:hover{
       cursor:pointer;
-      background-color:"#4a80f6";
+      background-color:#4a80f6;
       
   }
 `
