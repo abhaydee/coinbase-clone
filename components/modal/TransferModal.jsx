@@ -1,14 +1,26 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Receive from "./Receive";
+import Transfer from "./Transfer";
 const TransferModal = () => {
     const [action,setAction] =useState("send")
-
     const selectedStyle={
         color:"#3773f5"
     }
 
     const unselectedStyle={
         border:"1px solid #282b2f"
+    }
+
+    const selectedModal =(option) =>{
+      switch(option){
+        case "send":
+          return <Transfer/>
+        case "receive":
+          return <Receive/>
+        default:
+          return <h2>Send</h2>
+      }
     }
   return (
     <Wrapper>
@@ -20,6 +32,9 @@ const TransferModal = () => {
           <p>Receive</p>
         </Option>
       </Selector>
+      <ModalMain>
+        {selectedModal(action)}
+      </ModalMain>
     </Wrapper>
   );
 };
@@ -53,3 +68,9 @@ const Option = styled.div`
     background-color: #111214;
   }
 `;
+
+
+const ModalMain =styled.div`
+  flex:1;
+  padding;1rem;
+`
