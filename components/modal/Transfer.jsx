@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import {FaWallet} from "react-icons/fa"
-const Transfer = () => {
+import { FaWallet } from "react-icons/fa";
+const Transfer = ({
+  selectedTokens,
+  setAction,
+  thirdWebTokens,
+  walletAddress,
+}) => {
   const [amount, setAmount] = useState();
-  const [receipient,setReceipient] =useState("");
+  const [receipient, setReceipient] = useState("");
+
+  useEffect(() => {
+    console.log("----- selected token", selectedTokens);
+  }, []);
   return (
     <Wrapper>
       <Amount>
@@ -22,36 +31,32 @@ const Transfer = () => {
         </Warning>
       </Amount>
       <TransferForm>
-          <Row>
-            <FieldName>
-                To
-            </FieldName>
-            <Icon>
-                <FaWallet/>
-            </Icon>
-            <Receipient placeholder="address" value={receipient} onChange={(event)=>setReceipient(event.target.value)}>
-
-            </Receipient>
-         </Row>
-         <Divider/>
-         <Row>
-             <FieldName>
-                 Pay with
-             </FieldName>
-             <CoinSelectList>
-                 <Icon>
-                     {/* <img src={imageUrl}  alt=""/> */}
-                 </Icon>
-                 <CoinName>
-                     Ethereum
-                 </CoinName>
-             </CoinSelectList>
-         </Row>
+        <Row>
+          <FieldName>To</FieldName>
+          <Icon>
+            <FaWallet />
+          </Icon>
+          <Receipient
+            placeholder="address"
+            value={receipient}
+            onChange={(event) => setReceipient(event.target.value)}
+          ></Receipient>
+        </Row>
+        <Divider />
+        <Row>
+          <FieldName>Pay with</FieldName>
+          <CoinSelectList>
+            <Icon>{/* <img src={imageUrl}  alt=""/> */}</Icon>
+            <CoinName>Ethereum</CoinName>
+          </CoinSelectList>
+        </Row>
       </TransferForm>
       <Row>
-          <Continue>
-              Continue
-          </Continue>
+        <Continue>Continue</Continue>
+      </Row>
+      <Row>
+        <BalanceTitle>ETH Balance</BalanceTitle>
+        <Balance>0.00 ETH</Balance>
       </Row>
     </Wrapper>
   );
@@ -64,6 +69,7 @@ const Wrapper = styled.div`
   flex-direction: "column";
   height: "100%";
   align-items: "center";
+  overflow: hidden;
   flex: 1;
 `;
 
@@ -76,6 +82,7 @@ const FlexInputContainer = styled.div`
   flex: 1;
   display: flex;
   align-items: flex-end;
+  overflow: hidden;
   color: "#3773f5";
   & > span {
     font-size: 3rem;
@@ -110,14 +117,15 @@ const Warning = styled.div`
 `;
 
 const Divider = styled.div`
-    border-bottom:1px solid #282b2f;
+  border-bottom: 1px solid #282b2f;
 `;
 
-const TransferForm =styled.div`
- border: 1px solid #282b2f;
- border-radius :0.4rem;
- margin:1rem;
-`
+const TransferForm = styled.div`
+  border: 1px solid #282b2f;
+  border-radius: 0.4rem;
+  margin: 2rem;
+  overflow: hidden;
+`;
 const Row = styled.div`
   display: flex;
   align-items: center;
@@ -178,18 +186,21 @@ const CoinName = styled.div`
   margin-right: 0.5rem;
 `;
 
-const Continue =styled.div`
-  color:white;
-  width:100%;
-  background:#3773f5;
-  padding:1rem;
-  margin:1rem;
-  text-align:center;
-  border-radius:0.4rem;
-  font-size:1.2rem;
-  &:hover{
-      cursor:pointer;
-      background-color:#4a80f6;
-      
+const Continue = styled.div`
+  color: white;
+  width: 100%;
+  background: #3773f5;
+  padding: 1rem;
+  margin: 1rem;
+  text-align: center;
+  border-radius: 0.4rem;
+  font-size: 1.2rem;
+  &:hover {
+    cursor: pointer;
+    background-color: #4a80f6;
   }
-`
+`;
+
+const BalanceTitle = styled.div``;
+
+const Balance = styled.div``;

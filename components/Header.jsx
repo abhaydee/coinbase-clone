@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import { useRouter } from "next/router";
 import TransferModal from "./modal/TransferModal.jsx";
 import Link from "next/link";
-const Header = ({ walletAddress, connectWallet }) => {
+const Header = ({ walletAddress, connectWallet,sanityTokens, thirdWebTokens}) => {
   const router = useRouter();
   const customStyles={
     content:{
@@ -45,7 +45,7 @@ const Header = ({ walletAddress, connectWallet }) => {
         onRequestClose={() => router.push("/")}
         style={customStyles}
       >
-        <TransferModal/>
+        <TransferModal sanityTokens={sanityTokens} thirdWebTokens={thirdWebTokens}/>
       </Modal>
     </Wrapper>
   );
