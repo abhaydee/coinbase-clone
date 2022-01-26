@@ -21,17 +21,19 @@ function Dashboard({ address }) {
     const getSanityAndThirdWebTokens=async () =>{
         const coins=await fetch("https://hfam2mls.api.sanity.io/v1/data/query/production?query=*%5B_type%3D%3D%22coins%22%5D%7B%0A%20%20name%2C%0A%20%20usdPrice%2C%0A%20%20contractAddress%2C%0A%20%20logo%2C%0A%20%20symbol%0A%7D")
         const sanityTokens = (await coins.json()).result;
+        console.log("the use effect console",sanityTokens)
         setSanityTokens(sanityTokens)
         setThirdWebTokens(sanityTokens.map((token) => (sdk.getTokenModule(token.contractAddress))))
     }
-    return getSanityAndThirdWebTokens()
+     getSanityAndThirdWebTokens()
   },[])
 
+  console.log("root cause sanity tokens",sanityTokens)
   return (
     <Wrapper>
       <Sidebar/>
       <MainContainer>
-        <Header walletAddress={address} sanityTokens={sanityTokens} thirdWebTokens={thirdWebTokens}/>
+        <Header walletAddress={address} sanityTokens={sanityTokens && sanityTokens} thirdWebTokens={thirdWebTokens}/>
         <Main walletAddress={address} sanityTokens={sanityTokens} thirdWebTokens={thirdWebTokens}/>
       </MainContainer>
     </Wrapper>

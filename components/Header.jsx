@@ -6,6 +6,7 @@ import TransferModal from "./modal/TransferModal.jsx";
 import Link from "next/link";
 const Header = ({ walletAddress, connectWallet,sanityTokens, thirdWebTokens}) => {
   const router = useRouter();
+  console.log("sanity tokens header",sanityTokens)
   const customStyles={
     content:{
       top:"50%",
@@ -45,7 +46,7 @@ const Header = ({ walletAddress, connectWallet,sanityTokens, thirdWebTokens}) =>
         onRequestClose={() => router.push("/")}
         style={customStyles}
       >
-        <TransferModal sanityTokens={sanityTokens} thirdWebTokens={thirdWebTokens}/>
+        <TransferModal sanityTokens={sanityTokens} thirdWebTokens={thirdWebTokens} walletAddress={walletAddress}/>
       </Modal>
     </Wrapper>
   );
