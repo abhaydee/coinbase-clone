@@ -9,14 +9,12 @@ const Transfer = ({
   thirdWebTokens,
   walletAddress,
 }) => {
-  console.log("the selected token", selectedToken);
   const [amount, setAmount] = useState();
   const [receipient, setReceipient] = useState("");
   const [activeThirdWebToken, setActiveThirdWebToken] = useState();
   const [imageUrl, setImageUrl] = useState("");
   const [balance, setBalance] = useState("Fetching ...");
   useEffect(() => {
-    console.log("----- selected token", selectedToken);
     //building the url
     const url = ImageUrlBuilder(client).image(selectedToken?.Logo).url();
     setImageUrl(url);
@@ -31,9 +29,7 @@ const Transfer = ({
 
   useEffect(() => {
     const getBalance = async () => {
-      console.log("the active third toke ", activeThirdWebToken);
       const balance = await activeThirdWebToken.balanceOf(walletAddress);
-      console.log("logging the balance", balance);
       setBalance(balance);
     };
     if(activeThirdWebToken){
@@ -42,12 +38,8 @@ const Transfer = ({
   }, [thirdWebTokens, activeThirdWebToken]);
 
   const sendCrypto = async (amount, receipient) => { 
-    console.log("logging the token",activeThirdWebToken)
-    console.log("logging amount",amount)
-    console.log("logging receipient",receipient)
     if(activeThirdWebToken && amount && receipient){
       const tx = await activeThirdWebToken.transfer(receipient,amount.toString().concat("000000000000000000"))
-      console.log("sending crypto",tx)
       setAction("Transferred")
     }
     else {
@@ -87,7 +79,7 @@ const Transfer = ({
         <Divider />
         <Row>
           <FieldName>Pay with</FieldName>
-          <CoinSelectList>
+          <CoinSelectList onClick={()=> setAction("select")}>
             <Icon>
               <img src={imageUrl} alt="" />
             </Icon>

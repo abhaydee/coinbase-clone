@@ -3,7 +3,6 @@ import { useWeb3 } from "@3rdweb/hooks";
 import Dashboard from "./api/Dashboard";
 export default function Home() {
   const { address, connectWallet } = useWeb3();
-  console.log("logging the address here", address);
   return (
     <Wrapper>
       {address ? (

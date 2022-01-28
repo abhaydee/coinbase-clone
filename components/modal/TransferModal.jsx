@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Receive from "./Receive";
 import Transfer from "./Transfer";
+import CoinSelector from "../CoinSelector";
 const TransferModal = ({ sanityTokens, thirdWebTokens, walletAddress }) => {
   const [action, setAction] = useState("send");
   const [selectedToken, setSeletedToken] = useState(sanityTokens[0]);
@@ -26,8 +27,17 @@ const TransferModal = ({ sanityTokens, thirdWebTokens, walletAddress }) => {
         );
       case "receive":
         return <Receive />;
-      // case "transferred" : 
-
+      case "select":
+        return (
+          <CoinSelector 
+            selectedToken={selectedToken}
+            setAction={setAction}
+            thirdWebTokens={thirdWebTokens}
+            walletAddress={walletAddress}
+            setSeletedToken={setSeletedToken}
+            sanityTokens={sanityTokens}
+          />
+        )
       default:
         return <h2>Send</h2>;
     }

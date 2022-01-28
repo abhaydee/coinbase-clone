@@ -11,7 +11,6 @@ const Header = ({
   thirdWebTokens,
 }) => {
   const router = useRouter();
-  console.log("sanity tokens header", sanityTokens);
   const customStyles = {
     content: {
       top: "50%",
