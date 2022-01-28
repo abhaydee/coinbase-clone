@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { FaWallet } from "react-icons/fa";
-import ImageUrlBuilder from "@sanity/image-url";
+import imageUrlBuilder from "@sanity/image-url";
 import { client } from "../../lib/sanity";
 const Transfer = ({
   selectedToken,
@@ -16,7 +16,7 @@ const Transfer = ({
   const [balance, setBalance] = useState("Fetching ...");
   useEffect(() => {
     //building the url
-    const url = ImageUrlBuilder(client).image(selectedToken?.Logo).url();
+    const url = imageUrlBuilder(client).image(selectedToken?.Logo).url();
     setImageUrl(url);
   }, [selectedToken]);
 

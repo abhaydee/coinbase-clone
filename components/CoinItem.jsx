@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { FaWallet } from "react-icons/fa";
+import imageUrlBuilder from "@sanity/image-url";
+import { client } from "../lib/sanity";
 const CoinItem = ({
   token,
   sender,
@@ -22,14 +25,23 @@ const CoinItem = ({
             })
             console.log("the sender",sender)
             const balance = await activeThirdWebToken.balanceOf(sender);
-            console.logh("logging token balance",balance)
+            console.log("logging token balance",balance)
+            return await setBalance(balance.displayValue.split(".")[0])
         }
+        const getImageUrl = async () => {
+            if(token.logo){
+                const  imageUrl = imageUrlBuilder(client).image(token.logo).url()
+                setImageUrl(imageUrl)    
+            }
+
+        }
+        getImageUrl()
         getBalance()
     }, [])
   return (
     <Wrapper>
       <Main>
-        <Icon></Icon>
+        <Icon><img src={imageUrl} alt="logo"/></Icon>
       </Main>
     </Wrapper>
   );
