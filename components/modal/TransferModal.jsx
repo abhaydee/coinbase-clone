@@ -26,6 +26,8 @@ const TransferModal = ({ sanityTokens, thirdWebTokens, walletAddress }) => {
         );
       case "receive":
         return <Receive />;
+      // case "transferred" : 
+
       default:
         return <h2>Send</h2>;
     }
