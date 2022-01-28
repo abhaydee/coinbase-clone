@@ -33,18 +33,14 @@ const Coin = ({ coin }) => {
             {"$"}
             {coin.priceUsd}
           </Primary>
-          <div
-            style={{ color: coin.change < 0 ? "#f0616d" : "#26ad75 " }}
-          >
-              {coin.chage > 0 && "+"}
-              {coin.change}%
+          <div style={{ color: coin.change < 0 ? "#f0616d" : "#26ad75 " }}>
+            {coin.chage > 0 && "+"}
+            {coin.change}%
           </div>
         </div>
-        <div style={{flex:1}}>
-            {coin.allocation}%
-        </div>
-        <div style={{flex:0}}>
-            <BsThreeDotsVertical/>
+        <div style={{ flex: 1 }}>{coin.allocation}%</div>
+        <div style={{ flex: 0 }}>
+          <BsThreeDotsVertical />
         </div>
       </div>
     </Wrapper>

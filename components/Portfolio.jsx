@@ -5,46 +5,38 @@ import { coins } from "../static/coins";
 import Coin from "./Coin";
 import BalancedChart from "./BalancedChart";
 
-
-const Portfolio = ({thirdWebTokens,sanityTokens,walletAddress}) => {
-  const [walletBalance,setWalletBalance]=useState(0)
-  const tokenToUsd={
-
-  }
-  for(const token of sanityTokens){
-    tokenToUsd[token.contractAddress]=Number(token.usdPrice)
+const Portfolio = ({ thirdWebTokens, sanityTokens, walletAddress }) => {
+  const [walletBalance, setWalletBalance] = useState(0);
+  const tokenToUsd = {};
+  for (const token of sanityTokens) {
+    tokenToUsd[token.contractAddress] = Number(token.usdPrice);
   }
 
-  useEffect(()=>{
-    const calculateTotalBalance = async ()=>{
-      const totalBalance=await Promise.all( 
-        thirdWebTokens.map(async token=>{
-          const balance =await token.balanceOf(walletAddress)
-          return Number((balance.displayValue) * tokenToUsd[token.address])
+  useEffect(() => {
+    const calculateTotalBalance = async () => {
+      const totalBalance = await Promise.all(
+        thirdWebTokens.map(async (token) => {
+          const balance = await token.balanceOf(walletAddress);
+          return Number(balance.displayValue * tokenToUsd[token.address]);
         })
-      )
-      setWalletBalance(totalBalance.reduce((acc,curr)=>acc+curr,0))
-    }
-     calculateTotalBalance()
-  },[thirdWebTokens,sanityTokens])
+      );
+      setWalletBalance(totalBalance.reduce((acc, curr) => acc + curr, 0));
+    };
+    calculateTotalBalance();
+  }, [thirdWebTokens, sanityTokens]);
 
   return (
     <Wrapper>
       <Content>
-          <Chart>
-              <div>
-                  <Balance>
-                      <BalanceTitle>
-                          Portfolio Balance
-                      </BalanceTitle>
-                      <BalanceValue>
-                          {walletBalance.toLocaleString()}
-                      </BalanceValue>
-                  </Balance>
-              </div>
-              <BalancedChart/>
-
-          </Chart>
+        <Chart>
+          <div>
+            <Balance>
+              <BalanceTitle>Portfolio Balance</BalanceTitle>
+              <BalanceValue>{walletBalance.toLocaleString()}</BalanceValue>
+            </Balance>
+          </div>
+          <BalancedChart />
+        </Chart>
         <PortfolioTable>
           <TableItem>
             <Title>Your Assets</Title>
@@ -125,21 +117,19 @@ const Title = styled.div`
   font-weight: 600;
 `;
 
-const Chart =styled.div`
-  border:1px solid #282b2f;
-  padding:1rem 2rem;
-`
+const Chart = styled.div`
+  border: 1px solid #282b2f;
+  padding: 1rem 2rem;
+`;
 
-const Balance=styled.div`
+const Balance = styled.div``;
 
-`
-
-const BalanceTitle=styled.div`
-  color:"#8a919e";
-  font-size:0.9rem;
-`
-const BalanceValue=styled.div`
-  font-size:1.8rem;
-  font-weight:700;
-  margin:0.5rem 0;
-`
+const BalanceTitle = styled.div`
+  color: "#8a919e";
+  font-size: 0.9rem;
+`;
+const BalanceValue = styled.div`
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+`;

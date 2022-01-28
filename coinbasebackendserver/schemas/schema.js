@@ -29,15 +29,15 @@ export default createSchema({
           type: "string",
         },
         {
-          title:"USD Price",
-          name:"usdPrice",
-          type:"string"
+          title: "USD Price",
+          name: "usdPrice",
+          type: "string",
         },
         {
-          title:"Logo",
-          name:"Logo",
-          type:"image"
-        }
+          title: "Logo",
+          name: "Logo",
+          type: "image",
+        },
       ],
     },
   ]),

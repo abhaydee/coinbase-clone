@@ -1,23 +1,42 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { FaWallet } from "react-icons/fa";
-import  ImageUrlBuilder  from "@sanity/image-url";
-import {client} from "../../lib/sanity"
+import ImageUrlBuilder from "@sanity/image-url";
+import { client } from "../../lib/sanity";
 const Transfer = ({
   selectedToken,
   setAction,
   thirdWebTokens,
   walletAddress,
 }) => {
+  console.log("the selected token", selectedToken);
   const [amount, setAmount] = useState();
   const [receipient, setReceipient] = useState("");
+  const [activeThirdWebToken, setActiveThirdWebToken] = useState();
+  const [imageUrl, setImageUrl] = useState("");
+  const [balance, setBalance] = useState("Fetching ...");
+  useEffect(() => {
+    console.log("----- selected token", selectedToken);
+    //building the url
+    const url = ImageUrlBuilder(client).image(selectedToken?.Logo).url();
+    setImageUrl(url);
+  }, [selectedToken]);
 
   useEffect(() => {
-    console.log("----- selected token", selectedToken)
-    //building the url
-    const url= ImageUrlBuilder(client).image(selectedToken?.logo).url()
-    console.log("logging the image url",url)
-  }, [selectedToken]);
+    const activeToken = thirdWebTokens.find(
+      (token) => token.address === selectedToken.contractAddress
+    );
+    setActiveThirdWebToken(activeToken);
+  }, [thirdWebTokens, selectedToken]);
+
+  useEffect(async () => {
+    const getBalance = async () => {
+      const balance = await activeThirdWebToken.balanceOf(walletAddress);
+      console.log("logging the balance", balance);
+      setBalance(balance);
+    };
+    getBalance();
+  }, [thirdWebTokens]);
   return (
     <Wrapper>
       <Amount>
@@ -51,8 +70,10 @@ const Transfer = ({
         <Row>
           <FieldName>Pay with</FieldName>
           <CoinSelectList>
-            <Icon>{/* <img src={imageUrl}  alt=""/> */}</Icon>
-            <CoinName>Ethereum</CoinName>
+            <Icon>
+              <img src={imageUrl} alt="" />
+            </Icon>
+            <CoinName>{selectedToken.name}</CoinName>
           </CoinSelectList>
         </Row>
       </TransferForm>
@@ -60,8 +81,8 @@ const Transfer = ({
         <Continue>Continue</Continue>
       </Row>
       <Row>
-        <BalanceTitle>ETH Balance</BalanceTitle>
-        <Balance>0.00 ETH</Balance>
+        <BalanceTitle>{selectedToken.Symbol} Balance</BalanceTitle>
+        <Balance>0.00 {selectedToken.Symbol}</Balance>
       </Row>
     </Wrapper>
   );
