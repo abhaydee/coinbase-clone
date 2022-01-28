@@ -29,14 +29,15 @@ const Transfer = ({
     setActiveThirdWebToken(activeToken);
   }, [thirdWebTokens, selectedToken]);
 
-  useEffect(async () => {
+  useEffect(() => {
     const getBalance = async () => {
+      console.log("the active third toke ", activeThirdWebToken);
       const balance = await activeThirdWebToken.balanceOf(walletAddress);
       console.log("logging the balance", balance);
       setBalance(balance);
     };
     getBalance();
-  }, [thirdWebTokens]);
+  }, [thirdWebTokens, activeThirdWebToken]);
   return (
     <Wrapper>
       <Amount>
@@ -73,7 +74,7 @@ const Transfer = ({
             <Icon>
               <img src={imageUrl} alt="" />
             </Icon>
-            <CoinName>{selectedToken.name}</CoinName>
+            <CoinName>{selectedToken?.name}</CoinName>
           </CoinSelectList>
         </Row>
       </TransferForm>
@@ -81,8 +82,10 @@ const Transfer = ({
         <Continue>Continue</Continue>
       </Row>
       <Row>
-        <BalanceTitle>{selectedToken.Symbol} Balance</BalanceTitle>
-        <Balance>0.00 {selectedToken.Symbol}</Balance>
+        <BalanceTitle>{selectedToken?.Symbol} Balance</BalanceTitle>
+        <Balance>
+          {balance.displayValue} {selectedToken?.Symbol}
+        </Balance>
       </Row>
     </Wrapper>
   );
