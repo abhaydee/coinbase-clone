@@ -5,7 +5,7 @@ import Transfer from "./Transfer";
 import CoinSelector from "../CoinSelector";
 const TransferModal = ({ sanityTokens, thirdWebTokens, walletAddress }) => {
   const [action, setAction] = useState("send");
-  const [selectedToken, setSeletedToken] = useState(sanityTokens[0]);
+  const [selectedToken, setSelectedToken] = useState(sanityTokens[0]);
   const selectedStyle = {
     color: "#3773f5",
   };
@@ -34,7 +34,7 @@ const TransferModal = ({ sanityTokens, thirdWebTokens, walletAddress }) => {
             setAction={setAction}
             thirdWebTokens={thirdWebTokens}
             walletAddress={walletAddress}
-            setSeletedToken={setSeletedToken}
+            setSelectedToken={setSelectedToken}
             sanityTokens={sanityTokens}
           />
         )

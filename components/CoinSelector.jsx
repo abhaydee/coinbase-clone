@@ -19,7 +19,7 @@ export default CoinSelector;
 
 
 const Wrapper =styled.div`
-
+    margin:2rem
 `
 
 const Title =styled.div`

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { FaWallet } from "react-icons/fa";
+import { FaCheck, FaWallet } from "react-icons/fa";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "../lib/sanity";
 const CoinItem = ({
@@ -29,9 +29,11 @@ const CoinItem = ({
             return await setBalance(balance.displayValue.split(".")[0])
         }
         const getImageUrl = async () => {
-            if(token.logo){
-                const  imageUrl = imageUrlBuilder(client).image(token.logo).url()
-                setImageUrl(imageUrl)    
+            console.log("the token",token)
+            if(token.Logo){
+                const url = imageUrlBuilder(client).image(token?.Logo).url();
+                console.log("the url",url)
+                setImageUrl(url);
             }
 
         }
@@ -39,20 +41,39 @@ const CoinItem = ({
         getBalance()
     }, [])
   return (
-    <Wrapper>
+    <Wrapper style={{backgroundColor:selectedToken.name === token.name && "#141519"}} onClick={()=>{
+        setSelectedToken(token)
+        setAction("send")
+    }}>
       <Main>
         <Icon><img src={imageUrl} alt="logo"/></Icon>
+        <NameDetails>
+            <Name>{token.name}</Name>
+            <Symbol>{token.Symbol}</Symbol>
+        </NameDetails>
+         
       </Main>
+      <Balance>
+          {balance} {token.symbol}
+      </Balance>
+      <IsSelected>
+          {Boolean(selectedToken.contractAddress === token.contractAddress) && (
+              <FaCheck/>
+          )}
+      </IsSelected>
     </Wrapper>
   );
 };
 
 export default CoinItem;
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+flex: 1;
+display: flex;
+
+`;
 const Main = styled.div`
   flex: 1;
   display: flex;
-  align-items: center;
 `;
 
 const Icon = styled.div`
@@ -63,7 +84,7 @@ const Icon = styled.div`
   overflow: hidden;
   display: grid;
   place-items: center;
-
+  margin-bottom:2rem;
   & > img {
     height: 120%;
     width: 120%;
@@ -76,9 +97,19 @@ const NameDetails = styled.div`
   margin-bottom: 0.2rem;
 `;
 
-const Balance = styled.div``;
+const Balance = styled.div`
+`;
 
 const IsSelected = styled.div`
   margin-left: 0.5rem;
   color: #3773f5;
 `;
+
+const Name = styled.div`
+  font-size:1.1rem;
+  margin-bottom:0.2rem;
+`
+const Symbol = styled.div`
+ color : #888f9b;
+ font-size : 0.8rem;
+`
