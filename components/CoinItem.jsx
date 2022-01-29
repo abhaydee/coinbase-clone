@@ -69,11 +69,13 @@ export default CoinItem;
 const Wrapper = styled.div`
 flex: 1;
 display: flex;
-
+align-items:center;
+padding:1rem;
 `;
 const Main = styled.div`
   flex: 1;
   display: flex;
+  align-items:center;
 `;
 
 const Icon = styled.div`
@@ -84,12 +86,12 @@ const Icon = styled.div`
   overflow: hidden;
   display: grid;
   place-items: center;
-  margin-bottom:2rem;
   & > img {
     height: 120%;
     width: 120%;
     object-fit: contain;
   }
+  align-self:center;
 `;
 
 const NameDetails = styled.div`

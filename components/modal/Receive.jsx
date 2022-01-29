@@ -113,6 +113,7 @@ const CoinSelectList = styled.div`
   display: flex;
   flex: 1.3;
   height: 100%;
+  margin-left:2rem;
 `;
 
 const CoinName = styled.div`

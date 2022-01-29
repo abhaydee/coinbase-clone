@@ -19,7 +19,9 @@ export default CoinSelector;
 
 
 const Wrapper =styled.div`
-    margin:2rem
+    margin:2rem;
+    margin-bottom:1rem;
+    align-items:center;
 `
 
 const Title =styled.div`
@@ -27,6 +29,7 @@ const Title =styled.div`
     text-align:center;
     font-size:1.5rem;
     margin-bottom:1rem;
+    justify-content:center;
 `
 
 const CoinList = styled.div`
