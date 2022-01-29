@@ -41,14 +41,33 @@ const TransferModal = ({ sanityTokens, thirdWebTokens, walletAddress }) => {
         )
       case "Transferring" : 
           return ( 
-          <div>
-              <h2>Transferring</h2>
-              <TailSpin height={100} width={100} color="grey" ariaLabel="loading"/>
+          <div style={{
+            width:"100%",
+            height:"100%",
+            display:"flex",
+            flexDirection:"column", 
+            justifyContent:"center",
+            alignItems:"center",
+            fontSize:"1.5rem"
+          }}>
+              <h2>Transfer in Progress</h2>
+              <TailSpin height={100} width={100} color="#3773f5" ariaLabel="loading"/>
               </div>
           )
       case "Transferred" :
         return ( 
-          <h2 style={{color:"green"}}>Transaction Complete</h2>
+          <div
+            style={{
+              width:"100%",
+              height:"100%",
+              display:"flex",
+              justifyContent:"center",
+              alignItems:"center",
+              fontSize:"2rem",
+              fontWeight:"600",
+              color:"#27ad75"  
+            }}  
+          >Transaction Complete</div>
         )
       default:
         return <h2>Send</h2>;
