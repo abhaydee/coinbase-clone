@@ -97,7 +97,7 @@ const TransferModal = ({ sanityTokens, thirdWebTokens, walletAddress }) => {
 export default TransferModal;
 
 const Wrapper = styled.div`
-  height: 35rem;
+  height: 37rem;
   width: 27rem;
   color: white;
   border: 1px solid #282b2f;

@@ -240,6 +240,12 @@ const Continue = styled.div`
   }
 `;
 
-const BalanceTitle = styled.div``;
+const BalanceTitle = styled.div`
+  padding-inline:1rem;
+  padding-bottom:0.5rem;
+`;
 
-const Balance = styled.div``;
+const Balance = styled.div`
+  padding-right:1rem;
+
+`;
