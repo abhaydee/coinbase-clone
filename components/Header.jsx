@@ -30,8 +30,8 @@ const Header = ({
     <Wrapper>
       <Title>Assets</Title>
       <ButtonContainer>
-       {walletAddress ? (
-          <WalletLink>
+        {/* {walletAddress ? ( */}
+        <WalletLink>
           <WalletLinkTitle>
             Wallet Connected
             <WalletAddress>
@@ -39,11 +39,11 @@ const Header = ({
             </WalletAddress>
           </WalletLinkTitle>
         </WalletLink>
-       ) : ( 
+        {/* ) : ( 
          <Button onClick={() => connectWallet("injected")}>
             Connect Wallet
          </Button>
-       )}
+       )} */}
         <Button style={{ backgroundColor: "#3773f5", color: "#000" }}>
           Buy/Sell
         </Button>
