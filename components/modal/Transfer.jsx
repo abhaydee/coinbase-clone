@@ -137,11 +137,13 @@ const FlexInput = styled.input`
   color: white;
   font-size: 4.5rem;
   text-wrap: wrap;
-  text-align: center;
-  max-width: 45%;
-  margin-right: 1rem;
+  text-align: right;
+  max-width: 50%;
+  margin-right:0.5rem;
   color: "#3773f5";
-
+  &::hover{
+    cursor:pointer;
+  }
   &::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;

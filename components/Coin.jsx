@@ -70,7 +70,7 @@ const NameCol = styled.div`
 
 const CoinIcon = styled.div`
   width: 1.8rem;
-  marin-right: 1rem;
+  margin-right: 2rem;
 `;
 
 const Primary = styled.div`
