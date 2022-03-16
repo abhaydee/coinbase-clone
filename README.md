@@ -14,7 +14,7 @@
 
     b) Install a package manager (NPM or YARN)
     
-## 5) Frameworks and dev tools used for the project. 
+## 2) Frameworks and dev tools used for the project. 
 
      a) NextJS
      b) Metamask
@@ -22,7 +22,7 @@
      d) ThirdWeb
      c) Javascript
      
-## 7) Cloud Deployment
+## 2) Cloud Deployment
 
     a) The project is hosted on the cloud with Vercel.
     b) Project Url:- https://coinbase-clone-three.vercel.app/
