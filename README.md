@@ -22,7 +22,7 @@
      d) ThirdWeb
      c) Javascript
      
-## 2) Cloud Deployment
+## 3) Cloud Deployment
 
     a) The project is hosted on the cloud with Vercel.
     b) Project Url:- https://coinbase-clone-three.vercel.app/
